@@ -1,3 +1,9 @@
 .elements__like {
   margin-left: 30px;
+  
+  transition: .3s ease-in;
+}
+
+.elements__like:hover {
+  opacity: 0.5;
 }
