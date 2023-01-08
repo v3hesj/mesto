@@ -1,7 +1,14 @@
 .profile__heading {
   display: flex;
   align-items: baseline;
-  max-width: 336px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 704px) {
+  .profile__heading {
+    justify-content: center;
+    transform: translateX(9px);
+  }
 }
 
 

@@ -1,4 +1,27 @@
 .profile__button-img {
-    width: 22px;
-    height: 22px;
+  background: no-repeat center/22px url(../../../images/Plus.svg);
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 30px;
+  padding: 23px 73px;
+
+  transition: .3s ease-in;
+}
+
+.profile__button-img:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 704px) {
+  .profile__button-img {
+    background-size: 16px;
+
+    padding: 23px 139px;
+    margin: 36px 0 0;
+  }
 }

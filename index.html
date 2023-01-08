@@ -15,19 +15,15 @@
     <main class="content">
 
       <section class="profile">
-        <div class="profile__block">
           <img src="./images/image.jpg" alt="Аватар" class="profile__avatar">
           <div class="profile__info">
             <div class="profile__heading">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <img src="./images/Edit_Button.svg" alt="Редактировать профиль" class="profile__edit">
+              <button class="profile__edit" type="button"></button>
             </div>
             <h2 class="profile__description">Исследователь океана</h2>
           </div>
-        </div>
-        <div class="profile__button">
-          <img src="./images/Plus.svg" alt="Кнопка добавить" class="profile__button-img">
-        </div>
+        <button class="profile__button-img" type="button"></button>
       </section>
 
       <section class="elements">
@@ -35,7 +31,7 @@
           <img src="./images/baikal.jpg" alt="Озеро Байкал" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Озеро Байкал</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
 
@@ -43,7 +39,7 @@
           <img src="./images/kamchatka.jpg" alt="Долина гейзеров и вулканы Камчатки" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Долина гейзеров и вулканы Камчатки</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
 
@@ -51,7 +47,7 @@
           <img src="./images/altai.jpg" alt="Горы Алтая" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Горы Алтая</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
 
@@ -59,7 +55,7 @@
           <img src="./images/kurshskaja-kosa.jpg" alt="Куршская коса" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Куршская коса</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
 
@@ -67,7 +63,7 @@
           <img src="./images/gnezdo.jpg" alt="Ласточкино гнездо" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Ласточкино гнездо</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
 
@@ -75,26 +71,27 @@
           <img src="./images/stolbi.jpg" alt="Ленские столбы" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Ленские столбы</h2>
-            <img src="./images/Like_white.svg" alt="Лайк" class="elements__like">
+            <button class="elements__like" type="button"></button>
           </div>
         </div>
       </section>
 
-      <section class="footer">
-        <p class="footer__copiright">© 2022 Mesto Russia</p>
-      </section>
-
       <section class="popup">
-        <form class="popup__conteiner">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__name" type="text" name="firstname" placeholder="Жак-Ив Кусто">
-          <input class="popup__description" type="text" name="description" placeholder="Исследователь океана">
-          <button class="popup__button"  type="submit">Сохранить</button>
-          <button class="popup__close"  type="reset"><img src="./images/Close_Icon.svg" alt="Закрыть поп-ап" class="popup__close-img"></button>
-        </form>
+        <div class="popup__conteiner">
+          <button class="popup__close"  type="button"></button>
+          <form class="popup__form-edit" name="Редактировать профиль">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__name popup__input_type_name" type="text" name="firstname" placeholder="Жак-Ив Кусто">
+            <input class="popup__description popup__input_type_description" type="text" name="description" placeholder="Исследователь океана">
+            <button class="popup__button"  type="submit">Сохранить</button>
+          </form>
+        </div>
       </section>
     </main>
+    <footer class="footer">
+      <p class="footer__copiright">© 2022 Mesto Russia</p>
+    </footer>
   </div>
-  <script src="./pages/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

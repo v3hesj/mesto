@@ -1,9 +1,12 @@
 .header__logo {
     width: 142px;
-    height: 33px;
+    aspect-ratio: 4.3;
+    height: auto;
     background: url(../../../images/logo/logo.svg) no-repeat center/cover;
 
     transition: .3s ease-in;
+
+    margin-bottom: 41px;
   }
   
   .header__logo:hover {
@@ -13,6 +16,9 @@
   @media screen and (max-width: 630px) {
     .header__logo {
       width: 104px;
-      height: 24px;
+      aspect-ratio: 4.3;
+      height: auto;
+
+      margin-bottom: 32px;
     }
   }
