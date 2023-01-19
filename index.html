@@ -27,7 +27,7 @@
       </section>
 
       <section class="elements">
-        <div class="elements__item">
+        <!-- <div class="elements__item">
           <img src="./images/baikal.jpg" alt="Озеро Байкал" class="elements__img">
           <div class="elements__block">
             <h2 class="elements__title">Озеро Байкал</h2>
@@ -73,11 +73,11 @@
             <h2 class="elements__title">Ленские столбы</h2>
             <button class="elements__like" type="button"></button>
           </div>
-        </div>
+        </div> -->
       </section>
 
-      <section class="popup">
-        <div class="popup__conteiner">
+      <section class="popup popup_type_edit">
+        <div class="popup__container">
           <button class="popup__close"  type="button"></button>
           <form class="popup__form-edit" name="Редактировать профиль">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -87,7 +87,41 @@
           </form>
         </div>
       </section>
+      <section class="popup popup_type_photo">
+        <div class="popup__container">
+          <button class="popup__close"  type="button"></button>
+          <form class="popup__form-photo" name="Новое место">
+            <h2 class="popup__title">Новое место</h2>
+            <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название">
+            <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+            <button class="popup__button"  type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+      <section class="popup popup_type_gallery">
+        <div class="popup__container-gallery">
+          <button class="popup__close"  type="button"></button>
+          <form class="popup__form-gallery" name="Галерея">
+            <img alt="Фото" class="popup__gallery-img">
+            <h2 class="popup__gallery-title"></h2>
+          </form>
+        </div>
+      </section>
     </main>
+
+    <template id="element__item">
+      <div class="elements__item">
+        <button class="elements__trash" type="button">
+          <img src="./images/Trash.svg" alt="Корзина" class="elements__trash-img">
+        </button>
+        <img alt="Название" class="elements__img">
+        <div class="elements__block">
+          <h2 class="elements__title"></h2>
+          <button class="elements__like" type="button"></button>
+        </div>
+      </div>
+    </template>
+
     <footer class="footer">
       <p class="footer__copiright">© 2022 Mesto Russia</p>
     </footer>
