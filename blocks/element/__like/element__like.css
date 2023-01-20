@@ -1,4 +1,4 @@
-.elements__like {
+.element__like {
   background: no-repeat center url(../../../images/Like_white.svg);
   border: none;
   padding: 0 11px;
@@ -6,6 +6,6 @@
   transition: .3s ease-in;
 }
 
-.elements__like:hover {
+.element__like:hover {
   opacity: 0.5;
 }

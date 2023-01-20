@@ -27,53 +27,7 @@
       </section>
 
       <section class="elements">
-        <!-- <div class="elements__item">
-          <img src="./images/baikal.jpg" alt="Озеро Байкал" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Озеро Байкал</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div>
 
-        <div class="elements__item">
-          <img src="./images/kamchatka.jpg" alt="Долина гейзеров и вулканы Камчатки" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Долина гейзеров и вулканы Камчатки</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/altai.jpg" alt="Горы Алтая" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Горы Алтая</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/kurshskaja-kosa.jpg" alt="Куршская коса" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Куршская коса</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/gnezdo.jpg" alt="Ласточкино гнездо" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Ласточкино гнездо</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/stolbi.jpg" alt="Ленские столбы" class="elements__img">
-          <div class="elements__block">
-            <h2 class="elements__title">Ленские столбы</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </div> -->
       </section>
 
       <section class="popup popup_type_edit">
@@ -92,8 +46,8 @@
           <button class="popup__close"  type="button"></button>
           <form class="popup__form-photo" name="Новое место">
             <h2 class="popup__title">Новое место</h2>
-            <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название">
-            <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+            <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название" required>
+            <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку" required>
             <button class="popup__button"  type="submit">Сохранить</button>
           </form>
         </div>
@@ -110,14 +64,16 @@
     </main>
 
     <template id="element__item">
-      <div class="elements__item">
-        <button class="elements__trash" type="button">
-          <img src="./images/Trash.svg" alt="Корзина" class="elements__trash-img">
+      <div class="element">
+        <button class="element__trash" type="button">
+          <img src="./images/Trash.svg" alt="Корзина" class="element__trash-img">
         </button>
-        <img alt="Название" class="elements__img">
-        <div class="elements__block">
-          <h2 class="elements__title"></h2>
-          <button class="elements__like" type="button"></button>
+        <div class="element__block-img">
+          <img alt="Название" class="element__img">
+        </div>
+        <div class="element__block">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button"></button>
         </div>
       </div>
     </template>
@@ -126,6 +82,7 @@
       <p class="footer__copiright">© 2022 Mesto Russia</p>
     </footer>
   </div>
+  <script src="./scripts/card.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
