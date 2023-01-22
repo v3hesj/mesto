@@ -24,13 +24,13 @@ const templateElements = document.querySelector('#element__item').content;
 const elementsAll = document.querySelector('.elements');
 
 //--- add elements ------------------------------------------------------------------------------------------------------------------
-function createElement (name, link) {
+function createElement (elem) {
   const cardElement = templateElements.querySelector('.element').cloneNode(true);
   const cardElementImg = cardElement.querySelector('.element__img');
   const cardElementTitle = cardElement.querySelector('.element__title');
-  cardElementImg.src = link;
-  cardElementImg.alt = name;
-  cardElementTitle.textContent = name;
+  cardElementImg.src = elem.link;
+  cardElementImg.alt = elem.name;
+  cardElementTitle.textContent = elem.name;
 
   const elementsTrash = cardElement.querySelector('.element__trash');
   elementsTrash.addEventListener('click', deleteCard)
@@ -51,8 +51,8 @@ function renderCard (elem) {
   elementsAll.prepend(elem);
 }
 
-initialCards.forEach((item) => {
-  elementsAll.append(createElement(item.name,item.link))
+initialCards.forEach((elem) => {
+  elementsAll.append(createElement(elem))
 });
 //------------------------------------------------------------------------------------------------------------------
 
@@ -75,11 +75,14 @@ function openPopup (elem) {
 //--- close popup ------------------------------------------------------------------------------------------------------------------
 const buttonCloseMass = Array.from(buttonsClose);
 buttonCloseMass.forEach((item) => {
-  item.addEventListener('click', closePopup);
+  item.addEventListener('click', function (event) {
+    const popupSection = event.target.closest('.popup');
+    closePopup(popupSection);
+  });
 });
 
-function closePopup (event) {
-  event.target.closest('.popup').classList.toggle('popup_opened');
+function closePopup (elem) {
+  elem.classList.remove('popup_opened');
 }
 //------------------------------------------------------------------------------------------------------------------
 
@@ -90,27 +93,27 @@ function toggleLike(event) {
 //------------------------------------------------------------------------------------------------------------------
 
 //--- form submit ------------------------------------------------------------------------------------------------------------------
-function SubmitHandleForm (evt) {
+function submitHandleForm (evt) {
   evt.preventDefault();
 
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
-  closePopup(evt);
+  closePopup(popupElementEdit);
 }
 
-formElementEdit.addEventListener('submit', SubmitHandleForm); 
+formElementEdit.addEventListener('submit', submitHandleForm); 
 
-function SubmitElementsForm (evt) {
+function submitElementsForm (evt) {
   evt.preventDefault();
-  let cardObj = {
+  const cardObj = {
     name: titleInput.value,
     link: linkInput.value
   };
-  renderCard(createElement(cardObj.name, cardObj.link));
-  closePopup(evt);
+  renderCard(createElement(cardObj));
+  closePopup(popupElementPhoto);
 }
 
-formElementPhoto.addEventListener('submit', SubmitElementsForm); 
+formElementPhoto.addEventListener('submit', submitElementsForm); 
 //------------------------------------------------------------------------------------------------------------------
 
 //--- delete element ------------------------------------------------------------------------------------------------------------------
