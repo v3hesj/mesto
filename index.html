@@ -33,10 +33,12 @@
       <section class="popup popup_type_edit">
         <div class="popup__container">
           <button class="popup__close"  type="button"></button>
-          <form class="popup__form-edit" name="Редактировать профиль">
+          <form class="popup__form" id="popup__form-edit" name="Редактировать профиль" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input class="popup__input popup__input_type_name" type="text" name="firstname" placeholder="Жак-Ив Кусто">
-            <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="Исследователь океана">
+            <input class="popup__input popup__input_type_name" id="edit-name" type="text" name="firstname" placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+            <span class="popup__error" id="edit-name-error"></span>
+            <input class="popup__input popup__input_type_description" id="edit-description" type="text" name="description" placeholder="Исследователь океана" minlength="2" maxlength="200" required>
+            <span class="popup__error" id="edit-description-error"></span>
             <button class="popup__button"  type="submit">Сохранить</button>
           </form>
         </div>
@@ -44,11 +46,13 @@
       <section class="popup popup_type_photo">
         <div class="popup__container">
           <button class="popup__close"  type="button"></button>
-          <form class="popup__form-photo" name="Новое место">
+          <form class="popup__form" id="popup__form-photo" name="Новое место" novalidate>
             <h2 class="popup__title">Новое место</h2>
-            <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название" required>
-            <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку" required>
-            <button class="popup__button"  type="submit">Сохранить</button>
+            <input class="popup__input popup__input_type_title" id="photo-title" type="text" name="title" placeholder="Название"  minlength="2" maxlength="30" required>
+            <span class="popup__error" id="photo-title-error"></span>
+            <input class="popup__input popup__input_type_link" id="photo-link" type="url" name="link" placeholder="Ссылка на картинку" required>
+            <span class="popup__error"  id="photo-link-error"></span>
+            <button class="popup__button"  type="submit">Создать</button>
           </form>
         </div>
       </section>
@@ -84,5 +88,6 @@
   </div>
   <script src="./scripts/card.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
