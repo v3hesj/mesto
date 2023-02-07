@@ -24,7 +24,7 @@ const overlayClose = document.querySelectorAll('.popup');
 const templateElements = document.querySelector('#element__item').content;
 const elementsAll = document.querySelector('.elements');
 
-//--- add elements ------------------------------------------------------------------------------------------------------------------
+//--- add elements -------------------------------------------------------------------------------------------------
 function createElement (elem) {
   const cardElement = templateElements.querySelector('.element').cloneNode(true);
   const cardElementImg = cardElement.querySelector('.element__img');
@@ -57,31 +57,30 @@ initialCards.forEach((elem) => {
 });
 //------------------------------------------------------------------------------------------------------------------
 
-//--- open popup ------------------------------------------------------------------------------------------------------------------
+//--- open popup ---------------------------------------------------------------------------------------------------
 profileAddElements.addEventListener('click', function () {
-  const formPhoto = document.forms[1];
-  formPhoto.reset();
+  formElementPhoto.reset();
 
   openPopup(popupElementPhoto);
+  hideFormValidationErrors(popupElementPhoto);
 });
 
 profileEdit.addEventListener('click', function () {
-  const formEdit = document.forms[0];
-  formEdit.reset();
+  formElementEdit.reset();
 
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
   openPopup(popupElementEdit);
+  hideFormValidationErrors(formElementEdit);
 });
 
 function openPopup (elem) {
   elem.classList.add('popup_opened');
-  enableValidation(objValid);
   document.addEventListener('keydown', closeKeyEscPopup);
 }
 //------------------------------------------------------------------------------------------------------------------
 
-//--- close popup ------------------------------------------------------------------------------------------------------------------
+//--- close popup --------------------------------------------------------------------------------------------------
 const buttonCloseMass = Array.from(buttonsClose);
 buttonCloseMass.forEach((item) => {
   item.addEventListener('click', function (event) {
@@ -92,7 +91,7 @@ buttonCloseMass.forEach((item) => {
 
 const overlayCloseMass = Array.from(overlayClose);
 overlayCloseMass.forEach((item) => {
-  item.addEventListener('click', function (event) {
+  item.addEventListener('mousedown', function (event) {
     if(event.target.classList.contains('popup')) {
       closePopup(event.target);
     }
@@ -101,12 +100,11 @@ overlayCloseMass.forEach((item) => {
 
 function closePopup (elem) {
   elem.classList.remove('popup_opened');
-  disableValidation(objValid);
   document.removeEventListener('keydown', closeKeyEscPopup);
 }
 //------------------------------------------------------------------------------------------------------------------
 
-//--- close Escape------------------------------------------------------------------------------------------------------------------
+//--- close Escape--------------------------------------------------------------------------------------------------
 function closeKeyEscPopup(event) {
   if(event.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
@@ -114,22 +112,23 @@ function closeKeyEscPopup(event) {
 };
 //------------------------------------------------------------------------------------------------------------------
 
-//--- Like toggle------------------------------------------------------------------------------------------------------------------
+//--- Like toggle---------------------------------------------------------------------------------------------------
 function toggleLike(event) {
   event.target.classList.toggle('element__like_activ');
 }
 //------------------------------------------------------------------------------------------------------------------
 
-//--- form submit ------------------------------------------------------------------------------------------------------------------
-function submitHandleForm (evt) {
+//--- form submit --------------------------------------------------------------------------------------------------
+function submitProfileForm (evt) {
   evt.preventDefault();
 
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupElementEdit);
+  hideFormValidationErrors(popupElementEdit)
 }
 
-formElementEdit.addEventListener('submit', submitHandleForm); 
+formElementEdit.addEventListener('submit', submitProfileForm); 
 
 function submitElementsForm (evt) {
   evt.preventDefault();
@@ -139,12 +138,13 @@ function submitElementsForm (evt) {
   };
   renderCard(createElement(cardObj));
   closePopup(popupElementPhoto);
+  hideFormValidationErrors(popupElementPhoto)
 }
 
 formElementPhoto.addEventListener('submit', submitElementsForm); 
 //------------------------------------------------------------------------------------------------------------------
 
-//--- delete element ------------------------------------------------------------------------------------------------------------------
+//--- delete element -----------------------------------------------------------------------------------------------
 function deleteCard (event) {
   event.target.closest('.element').remove();
 }
