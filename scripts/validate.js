@@ -26,40 +26,22 @@ function hideFormValidationErrors(formElement) {
     hideInputError (formElement, inputElement, objValid);
   });
   toggleButtonState(inputList, buttonElement, objValid);
-  formElement.addEventListener('reset', () => {
-    setTimeout(() => {
-      toggleButtonState(inputList, buttonElement, objValid);
-    }, 0);
-  });
 };
-
-// function hideFormValidationErrors (sectionElement, objValid) {
-//   const formElem = sectionElement.querySelector(`${objValid.formSelector}`);
-//   const inputList = Array.from(formElem.querySelectorAll(`${objValid.inputSelector}`));
-//   const buttonElement = formElem.querySelector(`${objValid.submitButtonSelector}`);
-
-//   toggleButtonState(inputList, buttonElement, objValid);
-//   formElem.addEventListener('reset', () => {
-//     setTimeout(() => {
-//       toggleButtonState(inputList, buttonElement, objValid);
-//     }, 0);
-//   });
-
-//   inputList.forEach((inputElement) => {
-//       hideInputError(formElem, inputElement, objValid);
-//       toggleButtonState(inputList, buttonElement, objValid);
-//     });
-// };
 
 function setEventListeners (formElement, objValid) {
   const inputList = Array.from(formElement.querySelectorAll(`${objValid.inputSelector}`));
   const buttonElement = formElement.querySelector(`${objValid.submitButtonSelector}`);
-  toggleButtonState(inputList, buttonElement, objValid);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, objValid);
       toggleButtonState(inputList, buttonElement, objValid);
     });
+  });
+
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonElement, objValid);
+    }, 0);
   });
 };
 
