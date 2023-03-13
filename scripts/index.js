@@ -1,3 +1,6 @@
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
+
 const profile = document.querySelector('.profile');
 const profileEdit = profile.querySelector('.profile__edit');
 const profileTitle = profile.querySelector('.profile__title');
@@ -21,57 +24,52 @@ const popupGalleryTitle = popupElementGallery.querySelector('.popup__gallery-tit
 const buttonsClose = document.querySelectorAll('.popup__close');
 const overlayClose = document.querySelectorAll('.popup');
 
-const templateElements = document.querySelector('#element__item').content;
+// const templateElements = document.querySelector('#element__item').content;
+const cardTemplateElements = '#element__item';
 const elementsAll = document.querySelector('.elements');
 
+const editFormValidator = new FormValidator(objValid, formElementEdit);
+const photoFormValidator = new FormValidator(objValid, formElementPhoto);
+
+editFormValidator.enableValidation();
+photoFormValidator.enableValidation();
 //--- add elements -------------------------------------------------------------------------------------------------
-function createElement (elem) {
-  const cardElement = templateElements.querySelector('.element').cloneNode(true);
-  const cardElementImg = cardElement.querySelector('.element__img');
-  const cardElementTitle = cardElement.querySelector('.element__title');
-  cardElementImg.src = elem.link;
-  cardElementImg.alt = elem.name;
-  cardElementTitle.textContent = elem.name;
-
-  const elementsTrash = cardElement.querySelector('.element__trash');
-  elementsTrash.addEventListener('click', deleteCard)
-
-  const elementsLike = cardElement.querySelector('.element__like');
-  elementsLike.addEventListener('click', toggleLike);
-
-  cardElementImg.addEventListener('click', function () {
-    openPopup(popupElementGallery);
-    popupGalleryImg.src = cardElementImg.src;
-    popupGalleryImg.alt = cardElementImg.alt;
-    popupGalleryTitle.textContent = cardElementTitle.textContent;
-  });
-  return cardElement;
-}
-
-function renderCard (elem) {
-  elementsAll.prepend(elem);
+const createCard = (elem) => {
+ const card = new Card(elem, cardTemplateElements, openPopupGallery);
+ const cardElement = card.createCardElement();
+ return cardElement;
 }
 
 initialCards.forEach((elem) => {
-  elementsAll.append(createElement(elem))
+  elementsAll.append(createCard(elem))
 });
+
+function renderCard (elem) {
+  elementsAll.prepend(createCard(elem));
+}
 //------------------------------------------------------------------------------------------------------------------
 
 //--- open popup ---------------------------------------------------------------------------------------------------
+function openPopupGallery (elem) {
+  openPopup(popupElementGallery);
+  popupGalleryImg.src = elem._link;
+  popupGalleryImg.alt = elem._name;
+  popupGalleryTitle.textContent = elem._name;
+}
+
 profileAddElements.addEventListener('click', function () {
   formElementPhoto.reset();
 
   openPopup(popupElementPhoto);
-  hideFormValidationErrors(popupElementPhoto);
+  photoFormValidator._hideFormValidationErrors();
 });
 
 profileEdit.addEventListener('click', function () {
-  formElementEdit.reset();
-
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
   openPopup(popupElementEdit);
-  hideFormValidationErrors(formElementEdit);
+  // hideFormValidationErrors(formElementEdit);
+  editFormValidator._hideFormValidationErrors();
 });
 
 function openPopup (elem) {
@@ -98,6 +96,7 @@ overlayCloseMass.forEach((item) => {
   });
 });
 
+//--- close func --------------------------------------------------------------------------------------------------
 function closePopup (elem) {
   elem.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeKeyEscPopup);
@@ -112,12 +111,6 @@ function closeKeyEscPopup(event) {
 };
 //------------------------------------------------------------------------------------------------------------------
 
-//--- Like toggle---------------------------------------------------------------------------------------------------
-function toggleLike(event) {
-  event.target.classList.toggle('element__like_activ');
-}
-//------------------------------------------------------------------------------------------------------------------
-
 //--- form submit --------------------------------------------------------------------------------------------------
 function submitProfileForm (evt) {
   evt.preventDefault();
@@ -125,7 +118,8 @@ function submitProfileForm (evt) {
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupElementEdit);
-  hideFormValidationErrors(popupElementEdit)
+  // hideFormValidationErrors(popupElementEdit)
+  editFormValidator._hideFormValidationErrors();
 }
 
 formElementEdit.addEventListener('submit', submitProfileForm); 
@@ -136,16 +130,9 @@ function submitElementsForm (evt) {
     name: titleInput.value,
     link: linkInput.value
   };
-  renderCard(createElement(cardObj));
+  renderCard(cardObj);
   closePopup(popupElementPhoto);
-  hideFormValidationErrors(popupElementPhoto)
+  photoFormValidator._hideFormValidationErrors();
 }
 
 formElementPhoto.addEventListener('submit', submitElementsForm); 
-//------------------------------------------------------------------------------------------------------------------
-
-//--- delete element -----------------------------------------------------------------------------------------------
-function deleteCard (event) {
-  event.target.closest('.element').remove();
-}
-//------------------------------------------------------------------------------------------------------------------
