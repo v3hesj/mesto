@@ -17,13 +17,15 @@
 * Псевдоклассы 
 * JavaScript 
 * Формы
+* классы JavaScript
+* упаковка проекта Webpack
 
 ### Figma
 ## [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
 ### Возможные доработки
-* Добавление возможности редактировать содержимое сайта с помощью JavaScript
-* Работа с сервером
+* Добавление возможности оставить комментарий
+* Загрузка видео
 
 ### Готовый сайт
 ## [Место](https://v3hesj.github.io/mesto/index.html)
