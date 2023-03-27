@@ -7,6 +7,8 @@ const objValid = {
   errorClass: 'popup__error_visible'
 };
 
+export default objValid;
+
 // enableValidation(objValid);
 
 // function enableValidation (objValid) {
