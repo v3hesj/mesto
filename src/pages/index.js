@@ -53,7 +53,7 @@ profileEdit.addEventListener('click', function () {
   popupEditProfile.open();
   nameInput.value = userInfo.getUserInfo().name;
   jobInput.value = userInfo.getUserInfo().description;
-  editFormValidator._hideFormValidationErrors();
+  editFormValidator.hideFormValidationErrors();
 });
 
 const popupAddPhoto = new PopupWithForm('#popup_photo', ((elem) => { cardSection.addItem(createCard(elem)) }));
@@ -62,5 +62,5 @@ popupAddPhoto.setEventListeners();
 profileAddElements.addEventListener('click', function () {
   formElementPhoto.reset();
   popupAddPhoto.open();
-  photoFormValidator._hideFormValidationErrors();
+  photoFormValidator.hideFormValidationErrors();
 });

@@ -1,13 +1,13 @@
 export default class FormValidator {
-  constructor (obj, form) {
+  constructor (validationConfig, form) {
     this._form = form;
 
-    this._formSelector = obj.formSelector;
-    this._inputSelector = obj.inputSelector;
-    this._submitButtonSelector = obj.submitButtonSelector;
-    this._inactiveButtonClass = obj.inactiveButtonClass;
-    this._inputErrorClass = obj.inputErrorClass;
-    this._errorClass = obj.errorClass;
+    this._formSelector = validationConfig.formSelector;
+    this._inputSelector = validationConfig.inputSelector;
+    this._submitButtonSelector = validationConfig.submitButtonSelector;
+    this._inactiveButtonClass = validationConfig.inactiveButtonClass;
+    this._inputErrorClass = validationConfig.inputErrorClass;
+    this._errorClass = validationConfig.errorClass;
 
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
@@ -17,7 +17,7 @@ export default class FormValidator {
     this._setEventListeners(this._form);
   }
 
-  _hideFormValidationErrors() {
+  hideFormValidationErrors() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError (inputElement);
     });
