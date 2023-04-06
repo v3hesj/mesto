@@ -10,7 +10,7 @@ export default class PopupWithForm extends Popup {
     this._sendButton = this._popupElement.querySelector('.popup__button');
   }
 
-  _getInputValues() {
+  _getInputValues () {
     const formValues = {};
     this._inputList.forEach((input) => {
       formValues[input.name] = input.value;
@@ -18,7 +18,7 @@ export default class PopupWithForm extends Popup {
     return formValues;
   }
 
-  setEventListeners() {
+  setEventListeners () {
     super.setEventListeners();
     this._formPopup.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -27,8 +27,16 @@ export default class PopupWithForm extends Popup {
     })
   }
 
-  close() {
+  close () {
     this._formPopup.reset();
     super.close();
+  }
+
+  buttonUX (press) {
+    if (press) {
+      this._sendButton.textContent = "Сохранение...";
+    } else {
+      this._sendButton.textContent = "Сохранение";
+    }
   }
 }

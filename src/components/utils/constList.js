@@ -1,3 +1,8 @@
+const profileAvatar = '.profile__avatar';
+const profileAvatarBtn = document.querySelector('.profile__avatar');
+const popupSelectorAvatar = '#popup_edit-avatar';
+const popupSelectorIdAvatar = document.querySelector('#popup__form-avatar');
+const popupConfirmSelector = '#popup_confirm';
 const profile = document.querySelector('.profile');
 const profileEdit = profile.querySelector('.profile__edit');
 const profileTitle = '.profile__title';
@@ -12,6 +17,10 @@ const formElementPhoto = popupElementPhoto.querySelector('#popup__form-photo');
 const cardTemplateElements = '#element__item';
 
 export {
+  profileAvatar,
+  profileAvatarBtn,
+  popupSelectorAvatar,
+  popupSelectorIdAvatar,
   profileEdit, 
   profileTitle, 
   profileDescription, 
@@ -20,5 +29,6 @@ export {
   nameInput, 
   jobInput, 
   formElementPhoto, 
-  cardTemplateElements
+  cardTemplateElements,
+  popupConfirmSelector
 }

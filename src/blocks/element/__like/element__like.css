@@ -1,7 +1,7 @@
 .element__like {
   background: no-repeat center url(../../../images/Like_white.svg);
   border: none;
-  padding: 0 11px;
+  padding: 11px;
   
   transition: .3s ease-in;
 }
