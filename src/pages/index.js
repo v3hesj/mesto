@@ -67,16 +67,16 @@ const createCard = (elem) => {
       popupWithImage.open(name, link);
     },
     popupConfirm: () => { 
-      popupConfirm.containerCallback(() => {
-        popupConfirm.buttonUX(true);
+      popupConfirm.setContainerCallback(() => {
+        popupConfirm.changeButtonText(true);
         console.log(elem._id)
         api.deleteCard(elem._id)
         .then(() => {
           card.deleteCard();
           popupConfirm.close();
         })
-        .then(() => popupConfirm.buttonUX(false))
         .catch((err) => { console.log(err) })
+        .finally(() => popupConfirm.changeButtonText(false))
       })
       popupConfirm.open()
     },
@@ -108,14 +108,14 @@ const cardSection = new Section({ renderer: (elem) => createCard(elem) }, '.elem
 const userInfo = new UserInfo({ nameSelector: profileTitle, descriptionSelector: profileDescription, avatarSelector: '.profile__avatar' });
 
 const popupEditProfile = new PopupWithForm('#popup_edit', ((elem) => {
-  popupEditProfile.buttonUX(true);
+  popupEditProfile.changeButtonText(true);
   api.updateUserInfo({ name: elem.firstname, about: elem.description })
   .then((user) => {
     userInfo.setUserInfo({ userName: user.name, userDescription: user.about })
+    popupEditProfile.close();
   })
-  .then(() => popupEditProfile.buttonUX(false))
   .catch((err) => { console.log(err) })
-  
+  .finally(() => popupEditProfile.changeButtonText(false))
 }));
 
 popupEditProfile.setEventListeners();
@@ -128,37 +128,38 @@ profileEdit.addEventListener('click', function () {
 });
 //-----------
 const popupAddPhoto = new PopupWithForm('#popup_photo', ((elem) => {
-  popupAddPhoto.buttonUX(true);
+  popupAddPhoto.changeButtonText(true);
   api.addNewCard({ name: elem.name, link: elem.link })
   .then((card) => {
     cardSection.addItem(createCard(card)) 
+    popupAddPhoto.close();
   })
-  .then(() => popupAddPhoto.buttonUX(false))
   .catch((err) => { console.log(err) })
-  
+  .finally(() => popupAddPhoto.changeButtonText(false))
 }));
 
 popupAddPhoto.setEventListeners();
 
 profileAddElements.addEventListener('click', function () {
-  formElementPhoto.reset();
   popupAddPhoto.open();
   photoFormValidator.hideFormValidationErrors();
 });
 //-----------
 
 const popupAvatar = new PopupWithForm(popupSelectorAvatar, ((elem) => {
-  popupAvatar.buttonUX(true);
+  popupAvatar.changeButtonText(true);
   api.updateUserAvatar(elem.link)
   .then((ava) => {
     userInfo.setUserAvatar({ avatar: ava.avatar})
+    popupAvatar.close();
   })
-  .then(() => popupAvatar.buttonUX(false))
   .catch((err) => { console.log(err) })
+  .finally(() => popupAvatar.changeButtonText(false))
 }));
 
 popupAvatar.setEventListeners();
 
 profileAvatarBtn.addEventListener('click', () => {
   popupAvatar.open();
+  avatarFormValidator.hideFormValidationErrors();
 })

@@ -23,7 +23,6 @@ export default class PopupWithForm extends Popup {
     this._formPopup.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._formSubmit(this._getInputValues());
-      this.close();
     })
   }
 
@@ -32,7 +31,7 @@ export default class PopupWithForm extends Popup {
     super.close();
   }
 
-  buttonUX (press) {
+  changeButtonText (press) {
     if (press) {
       this._sendButton.textContent = "Сохранение...";
     } else {

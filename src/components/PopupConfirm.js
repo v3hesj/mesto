@@ -14,11 +14,11 @@ export default class PopupConfirm extends Popup {
     })
   }
 
-  containerCallback (callback) {
+  setContainerCallback (callback) {
     this._callbackConfirm = callback;
   }
 
-  buttonUX (press) {
+  changeButtonText (press) {
     if (press) {
       this._submitButton.textContent = "Удаляю...";
     } else {
